@@ -24,5 +24,26 @@ namespace pstgresdbapp
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            pstgresdbapp.postgresDataSet postgresDataSet = ((pstgresdbapp.postgresDataSet)(this.FindResource("postgresDataSet")));
+            // Load data into the table throwers. You can modify this code as needed.
+            pstgresdbapp.postgresDataSetTableAdapters.throwersTableAdapter postgresDataSetthrowersTableAdapter = new pstgresdbapp.postgresDataSetTableAdapters.throwersTableAdapter();
+            postgresDataSetthrowersTableAdapter.Fill(postgresDataSet.throwers);
+            System.Windows.Data.CollectionViewSource throwersViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("throwersViewSource")));
+            throwersViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            postgresDataSetTableAdapters.throwersTableAdapter throwers1 = new postgresDataSetTableAdapters.throwersTableAdapter();
+            throwers1.Insert("Tom Shields", 2017);
+
+            
+
+
+        }
     }
 }
